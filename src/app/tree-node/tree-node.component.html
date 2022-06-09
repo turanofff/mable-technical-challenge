@@ -1,0 +1,38 @@
+<ng-container *ngIf="node as inode"> 
+     <ng-template [ngIf] = "inode.name" [ngIfElse]="createNew">
+        <form id="{{inode.id}}" class="container" [attr.aria-label]="inode.type + ' ' + inode.name" role="form" tabindex="0">
+            <div [ngClass]="['icon', inode.type]" aria-hidden="true"></div>
+            <label class="node--name" [attr.aria-labelledby]="inode.id">{{inode.name}}</label>
+            <input *ngIf="inode.type === 'folder'" 
+                class="btn btn--y visible--on--hover" 
+                type="button" 
+                aria-label="Add new child node"
+                role="button" 
+                value="+" 
+                (click)="addChildNode()">
+            <input class="btn btn--n visible--on--hover" 
+                type="button" 
+                role="button" 
+                aria-label="Delete node"
+                value="X" 
+                (click)="deleteNode()">
+        </form>
+    </ng-template>
+
+    <ng-template #createNew>
+        <ng-template [ngIf]="inode.type === 'unset'" [ngIfElse]="setNameTemplate">
+            <form #fileOrFolder class="container" aria-label="New node type dialog" role="dialog" tabindex="0">
+                <input type="button" value="file"   aria-label="Create new file"   (click)="setNodeType('file')">
+                <input type="button" value="folder" aria-label="Create new folder" (click)="setNodeType('folder')">
+            </form>
+        </ng-template>
+        <ng-template #setNameTemplate>
+            <form class="container outline" aria-label="New node name dialog" role="dialog" (ngSubmit)="setNodeName()">
+                <div [ngClass]="['icon', inode.type]"></div>
+                <input autofocus #newItemNameInput class="inp--text" [(ngModel)] = "newItemName" aria-label="Node name" name="name" type="text">
+                <input class="btn btn--y" type="submit" aria-label="Create" value="V">
+                <input class="btn btn--n" type="button" aria-label="Cancel" value="X" (click)="deleteNode()">
+            </form>
+        </ng-template>
+    </ng-template>
+</ng-container>

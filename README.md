@@ -1,27 +1,34 @@
-# DirectoryStructure
+# Mable
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+Mable Frontend Engineer Assessment
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    npm install
 
-## Code scaffolding
+## Running application
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project is based on Angular framework, so it needs to be build before it can be run.
 
-## Build
+    npm run start
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Additionally, you can build a docker container that will run the application.
 
-## Running unit tests
+    docker build . -t directory-structure:latest
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Accessing application
 
-## Running end-to-end tests
+If the application is run directly from the source directory it can be accessed though the following URL: http://localhost:4200
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The docker container is built with nginx configuration exposing default http port 80/tcp.
 
-## Further help
+## Tests
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+As per original requirements this project contains no unit tests. 
+
+## To be added in future versions:
+  - Implement servies to communicate with the backend
+  - Implement routing
+  - Protect application with the login screen (authguards)
+  - Implement edit in place for tree element with the help of structural directives
+  - Improve accessibility further

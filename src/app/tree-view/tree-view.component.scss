@@ -1,0 +1,30 @@
+tree-node {
+   display: block;
+}
+.padding--left {
+   padding-left: 1.5rem; 
+}
+
+.padding--left::before{
+   content: '';
+   position: absolute;
+   width: 0.5rem;
+   margin-left: 0.12rem;
+   margin-top: -0.6rem;
+   height: 1.8rem;
+   box-shadow: -1px 1px 0 1px grey;
+   z-index: -100;
+}
+
+.btn--add--root {
+   background-color: black; /* Green */
+   border: none;
+   color: white;
+   padding: 1rem 1rem;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   font-weight: bold;
+   border-radius: 5px;
+   margin-bottom: 1rem;
+ }

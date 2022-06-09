@@ -1,0 +1,24 @@
+<button class="btn--add--root" aria-label="Add new folder to the root directory" (click)="addNode({})">Add folder to root</button>
+
+<ng-container *ngTemplateOutlet="root?.children?.length ? GroupTemplate : LeafTemplate; context: {node: root}">
+</ng-container>
+
+<ng-template #LeafTemplate let-node="node">
+    <tree-node *ngIf="!isRoot(node)" 
+    [node]="node" 
+    role="treeitem"
+    (addNode)="addNode($event)"
+    (delNode)="delNode($event)"
+    (setType)="setType($event)"
+    (setName)="setName($event)"
+    ></tree-node>
+</ng-template>
+
+<ng-template #GroupTemplate let-node="node">
+    <ng-container *ngTemplateOutlet="LeafTemplate; context:{node: node};">
+    </ng-container>
+    <div [ngClass]="isRoot(node) ? '' :'padding--left'" *ngFor="let child of node?.children">
+                <ng-container *ngTemplateOutlet="child?.children?.length ?  GroupTemplate : LeafTemplate; context:{node: child}">
+                </ng-container>
+     </div> 
+</ng-template>
